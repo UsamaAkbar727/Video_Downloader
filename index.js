@@ -28,10 +28,9 @@ const PORT = process.env.PORT || 4000;
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
 
 app.use(cors({
-    origin: CORS_ORIGIN,
+    origin: "*",
     credentials: true
 }));
-
 // 4. Body size limit (prevent large payloads)
 app.use(express.json({ limit: "10kb" }));
 
@@ -80,11 +79,11 @@ app.post("/info", (req, res) => {
 
                 // Group by height to ensure we only have ONE option per resolution level (1080, 720, etc.)
                 const resolutionGroups = {};
-                
+
                 info.formats.forEach(f => {
                     // Bucket height into standard values to prevent duplicates from slight variations
                     let height = f.height || (f.resolution ? parseInt(f.resolution.split('x')[1]) : 0) || (f.resolution ? parseInt(f.resolution.split('x')[0]) : 0);
-                    
+
                     // Normalize height to standard buckets
                     if (height > 1000) height = 1080;
                     else if (height > 600) height = 720;
