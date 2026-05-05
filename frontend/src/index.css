@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #030712;
+  --bg-secondary: #0c1222;
+  --card-bg: rgba(10, 16, 40, 0.70);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  --gradient: linear-gradient(135deg, #22d3ee 0%, #38bdf8 50%, #818cf8 100%);
+  --glow-cyan: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 80px rgba(34, 211, 238, 0.06);
+  --border-glass: rgba(255, 255, 255, 0.09);
+  --input-bg: rgba(15, 23, 50, 0.85);
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+}
+
+#root {
+  min-height: 100vh;
+}

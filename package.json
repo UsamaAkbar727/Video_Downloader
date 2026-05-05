@@ -1,0 +1,23 @@
+{
+  "name": "media-downloader",
+  "version": "1.0.0",
+  "description": "Professional multi-platform video downloader using yt-dlp and ffmpeg",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Usama Akbar",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.1",
+    "express-rate-limit": "^8.5.0",
+    "helmet": "^8.1.0",
+    "validator": "^13.15.35"
+  }
+}
