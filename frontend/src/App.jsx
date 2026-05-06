@@ -9,6 +9,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
+  const [downloadCancelled, setDownloadCancelled] = useState(false);
+
+  const handleCancelDownload = () => {
+    setDownloadCancelled(true);
+    setDownloading(false);
+    setStatusMessage('Download cancelled!');
+    setTimeout(() => setStatusMessage(''), 3000);
+  };
 
   const handleAnalyze = async () => {
     if (!url.trim()) {
@@ -52,6 +60,7 @@ const App = () => {
   const handleDownload = async () => {
     if (!url || !selectedFormat) return;
 
+    setDownloadCancelled(false);
     setDownloading(true);
     setStatusMessage('Starting download...');
 
@@ -65,11 +74,22 @@ const App = () => {
         }),
       });
 
+      if (downloadCancelled) {
+        setStatusMessage('Download cancelled!');
+        setDownloading(false);
+        return;
+      }
+
       if (!response.ok) {
         throw new Error('Download failed');
       }
 
       const blob = await response.blob();
+      if (downloadCancelled) {
+        setStatusMessage('Download cancelled!');
+        setDownloading(false);
+        return;
+      }
       const downloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = downloadUrl;
@@ -82,8 +102,10 @@ const App = () => {
       setStatusMessage('Download complete!');
       setTimeout(() => setStatusMessage(''), 5000);
     } catch (error) {
-      setStatusMessage('Error: ' + error.message);
-      setTimeout(() => setStatusMessage(''), 5000);
+      if (!downloadCancelled) {
+        setStatusMessage('Error: ' + error.message);
+        setTimeout(() => setStatusMessage(''), 5000);
+      }
     } finally {
       setDownloading(false);
     }
@@ -227,20 +249,32 @@ const App = () => {
                     ))}
                   </div>
 
-                  <button
-                    className="premium-download-btn"
-                    onClick={handleDownload}
-                    disabled={downloading}
-                  >
-                    {downloading ? (
-                      <><div className="spinner-white" /> Processing...</>
-                    ) : (
+                  {!downloading && (
+                    <button
+                      className="premium-download-btn"
+                      onClick={handleDownload}
+                      disabled={downloading}
+                    >
                       <>
                         <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                         Download in {videoInfo.formats.find(f => f.format_id === selectedFormat)?.resolution || 'HD'}
                       </>
-                    )}
-                  </button>
+                    </button>
+                  )}
+                  {downloading && (
+                    <>
+                      <button
+                        className="premium-download-btn cancel-btn"
+                        onClick={handleCancelDownload}
+                        style={{ background: '#e53e3e', color: '#fff', marginLeft: 12 }}
+                      >
+                        Cancel
+                      </button>
+                      <div style={{ display: 'inline-block', marginLeft: 12 }}>
+                        <div className="spinner-white" /> Processing...
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

@@ -92,7 +92,8 @@ app.post("/info", (req, res) => {
                     else if (height > 200) height = 240;
                     else if (height > 100) height = 144;
 
-                    if (f.vcodec !== 'none' && height > 0 && f.ext === 'mp4') {
+                    // Only include formats that have both video and audio
+                    if (f.vcodec !== 'none' && f.acodec !== 'none' && height > 0 && f.ext === 'mp4') {
                         // Keep the one with the highest quality (largest file size)
                         if (!resolutionGroups[height] || (f.filesize > (resolutionGroups[height].filesize || 0))) {
                             resolutionGroups[height] = f;
