@@ -38,8 +38,8 @@ app.use(express.json({ limit: "10kb" }));
 const downloadDir = path.join(__dirname, "downloads");
 if (!fs.existsSync(downloadDir)) fs.mkdirSync(downloadDir);
 
-const ytDlpPath = path.join(__dirname, "yt-dlp.exe");
-const ffmpegPath = path.join(__dirname, "ffmpeg.exe");
+const ytDlpPath = process.platform === "win32" ? path.join(__dirname, "yt-dlp.exe") : "yt-dlp";
+const ffmpegPath = process.platform === "win32" ? path.join(__dirname, "ffmpeg.exe") : "ffmpeg";
 
 // Helper for URL validation
 const isValidUrl = (url) => {
