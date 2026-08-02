@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import './App.css';
 
@@ -130,8 +130,11 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
-      <div className="bg-mesh" />
+    <div className="app-container" id="top">
+      <div className="bg-base" />
+      <div className="bg-orb bg-orb-1" />
+      <div className="bg-orb bg-orb-2" />
+      <div className="bg-orb bg-orb-3" />
       <div className="bg-grid" />
 
       {/* --- Navbar --- */}
@@ -153,7 +156,7 @@ const App = () => {
         )}
 
         <div className="navbar-links">
-          <a href="#" className="nav-link">Home</a>
+          <a href="#top" className="nav-link">Home</a>
           <a href="#features" className="nav-link">Features</a>
           <a href="#how-to" className="nav-link">How to Use</a>
         </div>
@@ -161,7 +164,7 @@ const App = () => {
 
       {/* --- Hero & Downloader --- */}
       <section className="hero">
-        <h1>Download Your Favorite <br /> <span style={{ color: '#3b82f6' }}>Videos Instantly</span></h1>
+        <h1>Download Your Favorite <br /> <span className="hero-accent">Videos Instantly</span></h1>
         <p>Support for TikTok, YouTube, Instagram, Facebook and more. High quality, no watermarks, completely free.</p>
 
         <div className="main-card">
@@ -262,18 +265,17 @@ const App = () => {
                     </button>
                   )}
                   {downloading && (
-                    <>
+                    <div className="download-actions">
                       <button
                         className="premium-download-btn cancel-btn"
                         onClick={handleCancelDownload}
-                        style={{ background: '#e53e3e', color: '#fff', marginLeft: 12 }}
                       >
                         Cancel
                       </button>
-                      <div style={{ display: 'inline-block', marginLeft: 12 }}>
+                      <div className="download-progress">
                         <div className="spinner-white" /> Processing...
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
@@ -338,10 +340,10 @@ const App = () => {
 
           <div className="info-card-premium">
             <div className="info-icon-box cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
             </div>
-            <h4>Audio Extraction</h4>
-            <p>Convert your favorite music videos to high-quality MP3 files with a single click. Perfect for offline listening.</p>
+            <h4>No Sign-Up Required</h4>
+            <p>Start downloading instantly. No account, no email, and no installation needed — just paste your link and go.</p>
             <div className="card-shine" />
           </div>
         </div>
@@ -402,37 +404,34 @@ const App = () => {
       {/* --- Footer --- */}
       <footer className="footer">
         <div className="footer-main">
-          <div className="brand-box-container">
-            <div className="brand-box">
-              <div className="brand-logo-circle">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 38C29.9411 38 38 29.9411 38 20C38 10.0589 29.9411 2 20 2C10.0589 2 2 10.0589 2 20C2 25 4 29.5 7 32.5L20 38Z" stroke="#3b82f6" strokeWidth="2.5" fill="rgba(59, 130, 246, 0.1)" />
-                  <path d="M24 13V24C24 26.2091 22.2091 28 20 28C17.7909 28 16 26.2091 16 24" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <div className="brand-text">
-                <div className="brand-name">JuTt</div>
-                <div className="brand-slogan">TECH SOLUTIONS</div>
-              </div>
-            </div>
+          <div className="footer-brand">
+            <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2.5" />
+              <path d="M16 12V24C16 26.2091 17.7909 28 20 28H24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+            SnapSave Pro
           </div>
-
-          <div className="developed-by-container">
-            Developed <span className="heart">❤</span> by JuTt Tech Solutions
-          </div>
+          <p className="footer-tagline">Universal HD video downloader — fast, free, and watermark-free.</p>
         </div>
 
         <div className="footer-bottom">
-          <div className="footer-links">
-            <a href="#" className="nav-link">Privacy Policy</a>
-            <a href="#" className="nav-link">Terms of Service</a>
-            <a href="#" className="nav-link">Contact</a>
-          </div>
           <p>© 2026 SnapSave Pro. All rights reserved.</p>
         </div>
       </footer>
 
-      <Toaster position="bottom-center" />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: '#fff',
+            color: '#0f172a',
+            border: '1px solid rgba(15, 23, 42, 0.08)',
+            boxShadow: '0 8px 30px rgba(15, 23, 42, 0.12)',
+            borderRadius: '12px',
+            fontWeight: '500',
+          },
+        }}
+      />
     </div>
   );
 };
