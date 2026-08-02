@@ -402,6 +402,50 @@ const App = () => {
         </div>
       </section>
 
+      {/* --- FAQs --- */}
+      <section id="faq" className="info-section faq-section">
+        <div className="section-title-wrapper">
+          <span className="section-tag">FAQ</span>
+          <h2>Frequently Asked <span className="text-gradient">Questions</span></h2>
+          <p className="section-subtitle">Hover over any question to reveal the answer instantly.</p>
+        </div>
+
+        <div className="faq-grid">
+          <div className="faq-item">
+            <button className="faq-question" type="button">
+              How do I download a video?
+            </button>
+            <div className="faq-answer">
+              Paste the video link, click Analyze, choose a format, and then click Download.
+            </div>
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" type="button">
+              Which platforms are supported?
+            </button>
+            <div className="faq-answer">
+              SnapSave Pro supports YouTube, TikTok, Instagram, Facebook, and many other popular sites.
+            </div>
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" type="button">
+              Do downloads include watermarks?
+            </button>
+            <div className="faq-answer">
+              No. Downloads are provided watermark-free so you can enjoy clean video files.
+            </div>
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" type="button">
+              Is registration required?
+            </button>
+            <div className="faq-answer">
+              No account or sign-up is needed. Just paste a link and download instantly.
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- Footer --- */}
       <footer className="footer">
         <div className="footer-main">
